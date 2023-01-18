@@ -8,7 +8,7 @@ I made this project for a couple reasons: 1. Most news sources are cluttered wit
 
 ## How? 
 
-The news is sourced from NewsAPI and the payments are handled through Strike's API. If the user is unfamiliar with Bitcoin and the Lightning Network, it will be prohibitively hard to make the payment without some guidance. Styling is done with tailwindcss and it is intentionally barebones. The client is built with React and the backend is a node server. 
+The news is sourced from NewsAPI and the payments are handled through Strike's API. If the user is unfamiliar with Bitcoin and the Lightning Network, it will be prohibitively hard to make the payment without some guidance. Styling is done with tailwindcss and it is intentionally barebones. The client is built with React and the backend is an express server. 
 
 ## Improvements
 
