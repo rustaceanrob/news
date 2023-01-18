@@ -6,7 +6,7 @@ url = "https://api.strike.me/v1/subscriptions"
 
 
 payload = json.dumps({
-  "webhookUrl": "https://bb75-2603-8001-7e41-3b77-d9ab-e6cd-f0c5-cd1.ngrok.io/status",
+  "webhookUrl": "https://lightning-news.herokuapp.com/status",
   "webhookVersion": "v1",
   "secret": "ScKc2Phr37RzfESKGYPh6CnZqNxc9t",
   "enabled": True,
