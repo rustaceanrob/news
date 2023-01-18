@@ -14,30 +14,36 @@ export default function useNewsSearch(category, pageNumber) {
     useEffect(() => {
         setLoading(true)
         setError(false)
-        axios({
-            method: 'GET',
-            url: 'https://newsapi.org/v2/everything',
-            params: { apiKey: 'f6247aca446549ad9f4ea354116474d7', // i would hide this but it doesn't matter
-                      q: category,
-                      language: 'en',
-                      from: yesterday,
-                      to: today,
-                      pageSize: 10, 
-                      page: pageNumber}
-        }).then( res => {
-            // console.log(res.data['status'])
+        let data = {
+            "category": category,
+            "yesterday": yesterday,
+            "today": today,
+            "pageNumber": pageNumber 
+        }
+
+        let config = {
+            method: 'post',
+            url: '/api/news',
+            data: data
+        }
+
+        axios(config).then((res) => {
             const responseCode = res.data['status']
+            console.log(res.data)
             if (responseCode === "ok" ) {
-                setArticles(res.data['articles'])
-                setPages((res.data['totalResults'] % 10) + 1) //number of results modulo 10 + 1
-                // console.log(res.data['articles'])
+                console.log(res.data)
+                setArticles(res.data.articles)
+                setPages((res.data['totalResults'] % 10) + 1) 
+                console.log(res.data.articles)
             } else {
                 setError(true)
                 setArticles([])
             }
-        }).catch(
+        }).catch((error) => {
+            console.log(error)
+            console.log('an error occured')
             setError(true)
-        )
+        })
 
     }, [category, pageNumber])
 

@@ -15,6 +15,31 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 const server = http.createServer(app);
 const io = new Server(server);
 
+app.post('/api/news', async function(req, res) {
+    let config = {
+        method: 'GET',
+        url: 'https://newsapi.org/v2/everything',
+        params: { apiKey: process.env.NEWS_API, 
+                    q: req.body.category,
+                    language: 'en',
+                    from: req.body.yesterday,
+                    to: req.body.today,
+                    pageSize: 10, 
+                    page: req.body.pageNumber}
+    }
+
+    // axios(config).then((response) => {
+    //     res.json(res)
+    // }).catch(error) 
+    try {
+        let response = await axios(config)
+        console.log(response)
+        res.json(response.data)
+    } catch(error) {
+        res.json(error)
+    }
+})
+
 
 app.post("/api/invoiceUSer", async function(req, res) {
     console.log(req.body);
